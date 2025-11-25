@@ -19,7 +19,13 @@ Simply regressing wages on years of schooling (OLS) is likely biased, because ed
 
 ## 2. Data
 
-The project uses an individual-level dataset loaded from `education.RData`. In the code, the main data frame is stored as `dfeduc`, and a subset of relevant variables is selected into `dfeduc_rel`.
+The project uses an individual-level dataset loaded from `education.RData`.  
+In the code file [`R/02_iv_analysis_education_wages.R`](R/02_iv_analysis_education_wages.R), the main data frame is stored as `dfeduc`, and a subset of relevant variables is selected into `dfeduc_rel`.
+
+Because the dataset is part of a university assignment, **it is not included in this repository**.  
+To run the analysis yourself, you will need a similar dataset saved as:
+
+`data/raw/education.RData`
 
 ### 2.1 Key variables
 
@@ -45,7 +51,10 @@ The project uses an individual-level dataset loaded from `education.RData`. In t
   - `step14`: Lived with a step-parent at age 14.
   - `exper`: Labour market experience.
 
-These variables allow us to compare **pure OLS estimates** with **IV estimates** that exploit variation in education induced by proximity to college, while controlling for background characteristics.
+These variables allow us to compare **pure OLS estimates** with **IV estimates** that exploit variation in education induced by proximity to college, while controlling for background characteristics.  
+All data loading, filtering, and model estimation steps are implemented in [`R/02_iv_analysis_education_wages.R`](R/02_iv_analysis_education_wages.R).
+
+
 
 ---
 
