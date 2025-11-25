@@ -16,8 +16,23 @@ The central question is:
 Simply regressing wages on years of schooling (OLS) is likely biased, because education is correlated with unobserved factors like ability, family background, or motivation. To address this endogeneity, the project uses **geographic proximity to a college** as an instrument for education.
 
 ---
+## 2. Repository structure
 
-## 2. Data
+- `R/02_iv_analysis_education_wages.R`  
+  Main R script: loads the data, builds `dfeduc`/`dfeduc_rel`, and runs all OLS and IV models.
+
+- `data/raw/`  
+  Folder for the raw dataset (not in the repo).  
+  Place `education.RData` here when running locally.  
+  - `.gitkeep` is just a placeholder.
+
+- `report/iv_education_wages_report.pdf`  
+  Written report with the full assignment answers and interpretation.
+
+- `README.md`  
+  This file: overview of the project, data, methods, and how to run the analysis.
+---
+## 3. Data
 
 The project uses an individual-level dataset loaded from `education.RData`.  
 In the code file [`R/02_iv_analysis_education_wages.R`](R/02_iv_analysis_education_wages.R), the main data frame is stored as `dfeduc`, and a subset of relevant variables is selected into `dfeduc_rel`.
@@ -27,7 +42,7 @@ To run the analysis yourself, you will need a similar dataset saved as:
 
 `data/raw/education.RData`
 
-### 2.1 Key variables
+### Key variables
 
 - **Outcome**
   - `wage`: Hourly wage.
@@ -58,7 +73,7 @@ All data loading, filtering, and model estimation steps are implemented in [`R/0
 
 ---
 
-## 3. Assignment structure, questions, and report
+## 4. Assignment structure, questions, and report
 
 This project is based on a two-part assignment: a **conceptual/theoretical** part about instrumental variables and a **hands-on empirical** part using real data on education and wages.  
 A full written version of the answers is available in the report:
@@ -69,7 +84,7 @@ Below is a short summary of what each question in the assignment is doing.
 
 ---
 
-### 3.1 Conceptual part – Instrumental variable theory
+### Conceptual part – Instrumental variable theory
 
 **Question 1 – Why OLS is biased with endogenous education**
 
@@ -100,7 +115,7 @@ The detailed reasoning and formal notation are in the report:
 
 ---
 
-### 3.2 Empirical part – Application to education and wages
+### Empirical part – Application to education and wages
 
 **Question 1 – Describing the data and key variables**
 
@@ -138,6 +153,8 @@ The last question directly compares **OLS vs IV** estimates:
 The analysis then applies **Wu–Hausman exogeneity tests** to formally test whether education can be treated as exogenous. The test strongly rejects exogeneity, justifying the use of IV instead of OLS.
 
 Finally, when both `nearc4` and `nearc2` are used as instruments in an overidentified model, a **Sargan–Hansen overidentification test** is used to check whether all instruments are jointly valid. The results indicate that at least one instrument (here, `nearc2`) is invalid, reinforcing the choice to rely on `nearc4` as the main instrument in the preferred specification.
+
+
 
 For full derivations, regression tables, and narrative discussion, see the report:  
 [iv_education_wages_report.pdf](report/iv_education_wages_report.pdf).
